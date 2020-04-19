@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_215809) do
     t.string "location"
     t.string "zip"
     t.text "description"
-    t.string "image_url"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
