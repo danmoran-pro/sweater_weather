@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
 gem 'figaro'
 gem 'fast_jsonapi'
+gem 'timezone'
+gem 'bcrypt'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,14 +40,19 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'faker'
-  gem 'vcr'
-  gem 'webmock'
-
+  gem 'factory_bot_rails'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'simplecov'
+  gem 'shoulda-matchers'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
+end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
 end
 
 
