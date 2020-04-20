@@ -7,10 +7,9 @@ class ForecastFacade
   end 
 
   def location_results
-  binding.pry
     @results ||= google_service(location).get_lat_long
     Location.new(@results)
-end
+  end
 
   def google_service(location)
     GoogleService.new(@location)
