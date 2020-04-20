@@ -54,6 +54,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
     bcrypt (3.1.13)
+    bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -190,6 +191,11 @@ GEM
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     vcr (5.1.0)
+    web-console (3.7.0)
+      actionview (>= 5.0)
+      activemodel (>= 5.0)
+      bindex (>= 0.4.0)
+      railties (>= 5.0)
     webmock (3.8.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -225,6 +231,7 @@ DEPENDENCIES
   timezone
   tzinfo-data
   vcr
+  web-console (>= 3.3.0)
   webmock
 
 RUBY VERSION

@@ -8,6 +8,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'support/factory_bot.rb'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -36,7 +37,7 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  config.include Capybara::DSL
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -64,6 +65,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  
   config.include FactoryBot::Syntax::Methods
 
   Shoulda::Matchers.configure do |config|
@@ -74,8 +76,14 @@ RSpec.configure do |config|
   end
 
   VCR.configure do |config|
-    config.cassette_library_dir = 'spec/cassettes'
-    config.hook_into :webmock
-    config.filter_sensitive_data("<GITHUB_API_KEY>") { ENV['GITHUB_API_KEY'] } 
+    VCR.configure do |config|
+      config.allow_http_connections_when_no_cassette = true
+      config.default_cassette_options = { allow_playback_repeats: true }
+      config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+      config.hook_into :webmock
+      config.filter_sensitive_data('<OPEN_WEATHER_MAP_KEY>') { ENV['OPEN_WEATHER_MAP_KEY'] }
+      config.filter_sensitive_data('<GOGGLE_KEY>') { ENV['GOGGLE_KEY'] }
+      config.configure_rspec_metadata!
+      end
   end
 end
