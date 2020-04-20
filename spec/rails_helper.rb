@@ -76,8 +76,14 @@ RSpec.configure do |config|
   end
 
   VCR.configure do |config|
-    config.cassette_library_dir = 'spec/cassettes'
-    config.hook_into :webmock
-    config.filter_sensitive_data("<GITHUB_API_KEY>") { ENV['GITHUB_API_KEY'] } 
+    VCR.configure do |config|
+      config.allow_http_connections_when_no_cassette = true
+      config.default_cassette_options = { allow_playback_repeats: true }
+      config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+      config.hook_into :webmock
+      config.filter_sensitive_data('<OPEN_WEATHER_MAP_KEY>') { ENV['OPEN_WEATHER_MAP_KEY'] }
+      config.filter_sensitive_data('<GOGGLE_KEY>') { ENV['GOGGLE_KEY'] }
+      config.configure_rspec_metadata!
+      end
   end
 end

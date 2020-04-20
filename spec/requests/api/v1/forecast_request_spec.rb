@@ -8,12 +8,12 @@ RSpec.describe "Api::V1::Forecasts", :vcr do
 
     it "returns http success" do
 
-      
+  
       get "/api/v1/forecast?location=(#{@destination_1.location})"
 
       expect(response).to be_successful
 
-      resp = JSON.parse(response.body, symbolize_names: true)['data']['attributes']
+      resp = JSON.parse(response.body, symbolize_names: true)#['data']['attributes']
   
     end
 
