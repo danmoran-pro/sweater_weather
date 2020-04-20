@@ -1,17 +1,14 @@
 class ForecastFacade
-  attr_reader :id, :location
+  attr_reader :id, :location, :forecast_results
   
   def initialize(location)
     @location = location 
     @id = nil
-    # json = weather_service(@location)
-
-    
   end 
-  binding.pry 
-  
+
   def forecast_results
-    @weather_service ||= weather_service(location_results.lat, location_results.lng).get_json_weather
+    binding.pry
+    Forecast.new(@loc)
   end
   
   def location_results
@@ -24,6 +21,7 @@ class ForecastFacade
   end
   
   def weather_service(location)
+    binding.pry
     WeatherService.new(@location.lat, @location.lng)
   end
 end
