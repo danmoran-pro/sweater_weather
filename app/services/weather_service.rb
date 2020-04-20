@@ -5,9 +5,8 @@ class WeatherService
     @lng = lng
   end
 
-  def current_weather(lat, lng)
-    response ||= conn.get"/onecall?lat=#{@lat}&lon=#{@lng}")
-    end
+  def self.current_weather(lat, lng)
+    response ||= conn.get"/onecall?lat=#{@lat}&lon=#{@lng}"
     JSON.parse(response.body, symbolize_names: true)
   end
 
