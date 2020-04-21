@@ -7,8 +7,8 @@ class ForecastFacade
   end 
 
   def forecast_results
-    binding.pry
-    Forecast.new(@loc)
+    data = weather_service.current_weather
+    Forecast.new(data)
   end
   
   def location_results
@@ -20,8 +20,7 @@ class ForecastFacade
     GoogleService.new(@location)
   end
   
-  def weather_service(location)
-    binding.pry
-    WeatherService.new(@location.lat, @location.lng)
+  def weather_service
+    WeatherService.new(location_results.lat, location_results.lng)
   end
 end
