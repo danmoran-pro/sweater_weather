@@ -12,7 +12,7 @@ class ForecastFacade
   end
   
   def location_results
-    @results ||= google_service(location).get_lat_long
+    @results ||= google_service(location).get_lat_longMT
     Location.new(@results)
   end
   
